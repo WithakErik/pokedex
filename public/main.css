@@ -7,8 +7,8 @@
 }
 
 body {
-    background: linear-gradient(cyan, darkcyan);
-    background-size: 400% 400%;
+    background: linear-gradient(cyan, black);
+    background-size: 800% 800%;
     animation: back-glow 13s alternate ease-in-out infinite;
     margin: 0;
     padding: 0;
