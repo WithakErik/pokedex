@@ -17,9 +17,15 @@
         />
 
         <Results id="results"
+          v-if="list.length !== 0"
           :list="list"
           :onSelect="onSelect"
         />
+        <div
+          v-else
+        >
+          <h1>No Pokemons to sea hear</h1>
+        </div>
       </div>
     </div>
 </div>
