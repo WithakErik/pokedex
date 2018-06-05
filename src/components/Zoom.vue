@@ -1,7 +1,7 @@
 <template>
     <div id="zoom-main">
         <div id="poke-zoom-main"
-        @click="$emit('zoomout')"
+        @click="$emit('onZoom')"
         >
             <div id="container-zoom"
                 :style="{ backgroundColor: poke.color_1 }"

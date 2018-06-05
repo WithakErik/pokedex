@@ -1,21 +1,14 @@
 <template>
 <div id="tiles-main">
-    <div v-if="banana.length === 0">
-        <h1>No Pokemons to see here</h1>
-    </div>
     <div class="pokes"
-        v-else
-        v-for="poke in banana"
-        @click="$emit('pokeTile', poke)"
-        :key="poke.id"
-        :style="{ backgroundColor: poke.color_1 }"
+        :style="{ backgroundColor: item.color_1 }"
         >
-        <h2>{{ poke.pokemon }}</h2>
-        <img :src="poke.url_image">
+        <h2>{{ item.pokemon }}</h2>
+        <img :src="item.url_image">
         <ul>
-            <li>Type: {{ poke.type_1 }}</li>
-            <li>Attack: {{ poke.attack }}</li>
-            <li>Defense: {{ poke.defense }}</li>
+            <li>Type: {{ item.type_1 }}</li>
+            <li>Attack: {{ item.attack }}</li>
+            <li>Defense: {{ item.defense }}</li>
         </ul>
     </div>
 </div>
@@ -23,12 +16,7 @@
 
 <script>
 export default {
-    props: ['banana'],
-    data() {
-        return {
-            isMousedown: false
-        }
-    }
+    props: ['item']
 }
 </script>
 
