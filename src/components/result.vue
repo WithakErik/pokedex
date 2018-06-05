@@ -1,6 +1,7 @@
 <template>
 <div id="tiles-main">
     <div class="pokes"
+        @click="onSelect(item)"
         :style="{ backgroundColor: item.color_1 }"
         >
         <h2>{{ item.pokemon }}</h2>
@@ -16,7 +17,12 @@
 
 <script>
 export default {
-    props: ['item']
+    props: {
+        item: Object,
+        onSelect: {
+            type: Function
+        }
+    }
 }
 </script>
 

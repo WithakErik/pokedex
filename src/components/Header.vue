@@ -1,9 +1,11 @@
 <template>
     <div id="header-main">
         <srt
+            class="input"
             :srt="srt"
         />
         <fltr
+            class="input"
             :fltr="fltr"
             :types="types"
         />
@@ -29,4 +31,7 @@ export default {
 </script>
 
 <style scoped>
+.input {
+    padding: 6px 0;
+}
 </style>

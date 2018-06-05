@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+    <zoom
+      v-if="zoomed"
+      :selected="selected"
+      :onExit="onExit"
+    />
     <!-- Main Pokedex thing -->
     <div id="app-container">
       <h1>Manipulate your poke search!</h1>
@@ -13,6 +18,7 @@
 
         <Results id="results"
           :list="list"
+          :onSelect="onSelect"
         />
       </div>
     </div>
@@ -22,6 +28,7 @@
 <script>
 import Header from './components/Header'
 import Results from './components/Results'
+import Zoom from './components/Zoom'
 import pokemon from './assets/pokemon'
 
 export default {
@@ -31,27 +38,41 @@ export default {
     return {
       pokemon,
       srt: {
-        property: 'pokemon'
+        property: 'pokemon',
+        direction: 1
       },
       fltr: {
         type: 'all',
         atk: 0,
         def: 0
-      }
+      },
+      zoomed: false,
+      selected: null
     };
   },
   // COMPONENTS
   components: {
     Header,
-    Results
+    Results,
+    Zoom
+  },
+  // METHODS
+  methods: {
+    onSelect: function(selected) {
+      this.zoomed = true;
+      this.selected = selected;
+    },
+    onExit: function() {
+      this.zoomed = false;
+    },
+    direction(direction) {
+      this.srt.direction = direction;
+    }
   },
 
   // COMPUTED
   computed: {
     types() {
-      // return this.pokemon.filter((obj, pos) => {
-      //     return this.pokemon.map(mapObj => mapObj.type_1).indexOf(obj.type_1) === pos;
-      // });
       const type1 = this.pokemon.map(p => p.type_1);
       const type2 = this.pokemon.map(p => p.type_2);
       const set = new Set(type1.concat(type2));
@@ -62,8 +83,8 @@ export default {
         const elementA = a[this.srt.property];
         const elementB = b[this.srt.property];
         if(elementA === elementB) return 0;
-        if(elementA < elementB) return 1;
-        return -1;
+        if(elementA < elementB) return this.srt.direction;
+        return -this.srt.direction;
       });
     },
     filtered() {

@@ -1,25 +1,25 @@
 <template>
     <div id="zoom-main">
         <div id="poke-zoom-main"
-        @click="$emit('onZoom')"
+        @click="onExit"
         >
             <div id="container-zoom"
-                :style="{ backgroundColor: poke.color_1 }"
+                :style="{ backgroundColor: selected.color_1 }"
             >
-                <h1>{{ poke.pokemon }}</h1>
-                <img :src="poke.url_image">
+                <h1>{{ selected.pokemon }}</h1>
+                <img :src="selected.url_image">
                 <div id="stats">
-                    <span><strong>Type:</strong> {{ poke.type_1 }}</span>
-                    <span><strong>Height:</strong> {{ poke.height }}</span>
-                    <span><strong>Weight:</strong> {{ poke.weight }}</span>
-                    <span><strong>Shape:</strong> {{ poke.shape }}</span>
-                    <span><strong>Attack:</strong> {{ poke.attack }}</span>
-                    <span><strong>Defense:</strong> {{ poke.defense }}</span>
-                    <span><strong>HP:</strong> {{ poke.hp }}</span>
-                    <span><strong>Speed:</strong> {{ poke.speed }}</span>
-                    <span><strong>Ability 1:</strong> {{ poke.ability_1 }}</span>
-                    <span><strong>Ability 2:</strong> {{ poke.ability_2 }}</span>
-                    <span><strong>Hidden Ability:</strong> {{ poke.ability_hidden }}</span>
+                    <span><strong>Type:</strong> {{ selected.type_1 }}</span>
+                    <span><strong>Height:</strong> {{ selected.height }}</span>
+                    <span><strong>Weight:</strong> {{ selected.weight }}</span>
+                    <span><strong>Shape:</strong> {{ selected.shape }}</span>
+                    <span><strong>Attack:</strong> {{ selected.attack }}</span>
+                    <span><strong>Defense:</strong> {{ selected.defense }}</span>
+                    <span><strong>HP:</strong> {{ selected.hp }}</span>
+                    <span><strong>Speed:</strong> {{ selected.speed }}</span>
+                    <span><strong>Ability 1:</strong> {{ selected.ability_1 }}</span>
+                    <span><strong>Ability 2:</strong> {{ selected.ability_2 }}</span>
+                    <span><strong>Hidden Ability:</strong> {{ selected.ability_hidden }}</span>
                 </div>
             </div>
         </div>
@@ -28,18 +28,25 @@
 
 <script>
 export default {
-    props: ['poke']
+    props: {
+        selected: Object,
+        onExit: {
+            type: Function
+        }
+    }
 }
 </script>
 
 <style scoped>
 
 #poke-zoom-main {
+    position: fixed;
     display: inline-block;
     padding-top: 33px;
     background: rgba(0, 0, 0, .69);
     width: 100%;
     height: 100%;
+    z-index: 99;
 }
 
 #container-zoom {
@@ -51,7 +58,6 @@ export default {
     display: flex;
     width: fit-content;
     align-content: center;
-    color: white;
     justify-content: space-around;
     align-items: center;
 }

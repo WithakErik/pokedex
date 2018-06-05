@@ -8,6 +8,11 @@
             <option value="attack">Atk</option>
             <option value="defense">Def</option>
         </select>
+        Sort Direction:
+        <select v-model="srt.direction">
+            <option value="-1">Ascending</option>
+            <option value="1">Descending</option>
+        </select>
     </div>
 </template>
 
